@@ -24,4 +24,4 @@ services:
     restart: always
     # And we map port 80 on our local mchine to port 80 inside the container
     ports:
-      - "80:80"
+      - "81:81"
