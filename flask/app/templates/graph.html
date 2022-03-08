@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Graph</title>
+</head>
+<body>
+    <canvas id="lineChart" width="1600" height="900"></canvas>
+    <script>
+        var ctx = document.getElementById("lineChart").getContext("2d")
+        var lineChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: {{ labels | safe}},
+                datasets: [
+                    {
+                        label: "Sensor 1",
+                        data: {{ values | safe }}, 
+                        fill: false,
+                        borderColor: "rgb(57, 162, 174)",
+                        lineTension: 0.1
+                    },
+                    {
+                        label: "Sensor 2",
+                        data: {{ values2 | safe }}, 
+                        fill: false,
+                        borderColor: "rgb(137, 20, 70)",
+                        lineTension: 0.1
+                    },
+                    {
+                        label: "Sensor 3",
+                        data: {{ values3 | safe }}, 
+                        fill: false,
+                        borderColor: "rgb(98, 75, 109)",
+                        lineTension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: false
+            }
+        });
+    </script>
+</body>
+</html>

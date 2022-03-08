@@ -1,7 +1,6 @@
 import os
-
 import boto3
-
+from boto3.dynamodb.conditions import Attr
 
 def get_resource():
     return boto3.resource('dynamodb',
@@ -14,4 +13,25 @@ def get_all_readings():
     client = get_resource()
     table = client.Table('temp_readings')
     response = table.scan()
+    return response['Items']
+
+
+def get_item_by_id(item_id):
+    client = get_resource()
+    table = client.Table('temp_readings')
+    response = table.get_item(Key={'id': item_id})
+    return response['Items']
+
+# GET ITEM BY ATTRIBUTE EQUAL TO YOUR VALUE
+def get_item_by_attribute(attribute, value):
+    client = get_resource()
+    table = client.Table('temp_readings')
+    response = table.scan(FilterExpression=Attr(attribute).eq(value))
+    return response['Items']
+
+# GET ITEM BY ATTRIBUTE WITH VALUE LESS THAN YOUR VALUE
+def get_item_by_attribute_lt(attribute, value):
+    client = get_resource()
+    table = client.Table('temp_readings')
+    response = table.scan(FilterExpression=Attr(attribute).lt(value))
     return response['Items']

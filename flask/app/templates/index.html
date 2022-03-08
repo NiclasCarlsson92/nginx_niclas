@@ -15,12 +15,19 @@
     </style>
 </head>
 <body>
+    <a class="graph" href="http://127.0.0.1:5000/graph">
+        127
+    </a>
+    <p></p>
+    <a class="graph2" href="http://localhost:81/graph">
+        81
+    </a>
     <h1>Sensor Data</h1>
     <table>
         <tr>
             <th>Sensor</th>
             <th>Date & Time</th>
-            <th>Temp Reading</th>
+            <th>Temperature</th>
         </tr>
         {% for reading in readings %}
             <tr>
@@ -36,6 +43,5 @@
             </tr>
         {% endfor %}
     </table>
-
 </body>
 </html>
