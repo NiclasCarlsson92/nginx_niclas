@@ -10,6 +10,7 @@ app = Flask(__name__)
 @app.get('/')
 def index():
    readings = get_all_readings()
+   readings.sort(key=lambda item: item['datetime'],reverse=True)
    return render_template('index.html', readings=readings)
 
 @app.get('/graph')
@@ -21,13 +22,13 @@ def graph():
     labels = [row['datetime'] for row in items]
     values = [int(row['temp']) for row in items]
 
-    # # SENSOR 2 GRAPH
+    # SENSOR 2 GRAPH
     items2 = get_item_by_attribute('sensor', 2)
     items2.sort(key=lambda item: item['datetime'])
     labels2 = [row['datetime'] for row in items2]
     values2 = [int(row['temp']) for row in items2]
 
-    # # SENSOR 3 GRAPH
+    # SENSOR 3 GRAPH
     items3 = get_item_by_attribute('sensor', 3)
     items3.sort(key=lambda item: item['datetime'])
     labels3 = [row['datetime'] for row in items3]
